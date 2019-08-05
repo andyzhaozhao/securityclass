@@ -20,4 +20,14 @@ public class DemoController {
     public String user() {
         return "return user";
     }
+
+    @GetMapping("/a")
+    public String a() {
+        return "return a";
+    }
+
+    @GetMapping("/b")
+    public String b() {
+        return "return b";
+    }
 }

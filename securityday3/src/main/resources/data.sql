@@ -18,3 +18,16 @@ insert into user_info (password, username, uid) values ('$2a$10$vLSbLoHEsnjqlHVe
 insert into user_role (rid, uid) values ('1','1')
 insert into user_role (rid, uid) values ('2','2')
 insert into user_role (rid, uid) values ('2','3')
+
+-- 初始化所有接口
+insert into permission (pid, url) values ('1','/user')
+insert into permission (pid, url) values ('2','/admin')
+insert into permission (pid, url) values ('3','/a')
+insert into permission (pid, url) values ('4','/b')
+
+-- 增加默认的权限配置
+insert into role_permission(pid, rid) values ('1','1')
+insert into role_permission(pid, rid) values ('1','2')
+insert into role_permission(pid, rid) values ('2','1')
+insert into role_permission(pid, rid) values ('3','1')
+insert into role_permission(pid, rid) values ('4','1')
