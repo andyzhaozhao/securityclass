@@ -1,0 +1,17 @@
+#spring:
+#  security:
+#    user:
+#      name: u
+#      password: 1
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: debug
+    org.springframework.security: debug
+    org.springframework.security.oauth2: INFO
+    org.springframework.boot.autoconfigure: INFO
+    cn.com.taiji.security.securityday1: debug
+
+
+
