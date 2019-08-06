@@ -1,5 +1,6 @@
 package cn.com.taiji.security.securityday3.config;
 
+import cn.com.taiji.security.securityday3.extend.CustomAuthenticationProvider;
 import cn.com.taiji.security.securityday3.extend.CustomUserDetailService;
 import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
@@ -21,7 +22,7 @@ import java.util.Properties;
 
 @EnableWebSecurity(debug = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+    public static final String CAPTCHA_SESSION_KEY = "captcha";
     private Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
 
     @Autowired
@@ -34,6 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailService)
                 .passwordEncoder(passwordEncoder());
+
+        auth.authenticationProvider(customAuthenticationProvider());
     }
 
     @Override
@@ -47,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         logger.info("My Third custom WebSecurityConfig class");
 
         http.authorizeRequests()
-                .antMatchers("/error","/captcha.jpg").permitAll()
+                .antMatchers("/error", "/captcha.jpg").permitAll()
                 .anyRequest()
                 .access("@customAuthService.canAccess(request,authentication)")
                 .and()
@@ -55,13 +58,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/myLogin").permitAll();
         http.csrf().disable();
         http.sessionManagement().maximumSessions(1);
-
+//        http.rememberMe();
         http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public CustomAuthenticationProvider customAuthenticationProvider() {
+        return new CustomAuthenticationProvider(userDetailsService(), passwordEncoder());
     }
 
     @Bean

@@ -1,6 +1,10 @@
 package cn.com.taiji.security.securityday3.web;
 
+import cn.com.taiji.security.securityday3.config.CustomCaptchaFilter;
+import cn.com.taiji.security.securityday3.config.WebSecurityConfig;
 import com.google.code.kaptcha.Producer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +18,8 @@ import java.io.IOException;
 
 @Controller
 public class CaptchaController {
+    private Logger logger = LoggerFactory.getLogger(CustomCaptchaFilter.class);
+
     @Autowired
     private Producer captchaProducer;
 
@@ -25,7 +31,7 @@ public class CaptchaController {
         String capText = captchaProducer.createText();
 
         // 将验证码文本设置到 session
-        request.getSession().setAttribute("captcha", capText);
+        request.getSession().setAttribute(WebSecurityConfig.CAPTCHA_SESSION_KEY, capText);
 
         // 创建验证码图片
         BufferedImage bi = captchaProducer.createImage(capText);
