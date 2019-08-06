@@ -1,8 +1,8 @@
-package cn.com.taiji.security.securityday3.config;
+package cn.com.taiji.security.securityday4.config;
 
-import cn.com.taiji.security.securityday3.extend.CustomAuthenticationProvider;
-import cn.com.taiji.security.securityday3.extend.CustomCaptchaWebAuthenticationDetailsSource;
-import cn.com.taiji.security.securityday3.extend.CustomUserDetailService;
+import cn.com.taiji.security.securityday4.extend.CustomAuthenticationProvider;
+import cn.com.taiji.security.securityday4.extend.CustomCaptchaWebAuthenticationDetailsSource;
+import cn.com.taiji.security.securityday4.extend.CustomUserDetailService;
 import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
@@ -28,18 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String CAPTCHA_SESSION_KEY = "captcha";
     private Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
 
-//    @Autowired
-//    private CustomUserDetailService customUserDetailService;
-
-//    @Autowired
-//    private CustomCaptchaFilter customFilter;
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(customAuthenticationProvider());
-
-//        auth.userDetailsService(customUserDetailService)
-//                .passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -62,8 +53,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/myLogin").permitAll();
         http.csrf().disable();
         http.sessionManagement().maximumSessions(1);
-//        http.rememberMe();
-//        http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>登录页面</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+</head>
+<body>
+<div class="container">
+    <div th:if="${param.error}">
+        用户名密码或者验证码错误，要不去<a th:href="@{/}">首页</a>看看？
+    </div>
+    <div th:if="${param.logout}">
+        您已经登出
+    </div>
+    <form class="form-horizontal" method="post" th:action="@{/myLogin}">
+        <h2 class="form-signin-heading">Security Day One自定义登录页面</h2>
+        <p>
+            <label for="username" class="sr-only">请输入用户名</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required
+                   autofocus>
+        </p>
+        <p>
+            <label for="password" class="sr-only">请输入密码</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        </p>
+        <div class="form-inline">
+            <!--<label for="firstname" class="col-sm-2 control-label">名字</label>-->
+            <!--<div class="col-sm-10">-->
+            <!--<input type="text" class="form-control" id="firstname" placeholder="请输入名字">-->
+            <!--</div>-->
+            <!-- 新增图形验证码的输入框 -->
+            <input type="text" name="captcha" placeholder="captcha" class="form-control col-sm-8 col-xs-8" required/>
+            <img src="/captcha.jpg" alt="captcha" class="col-sm-4 col-xs-4">
+        </div>
+        <!--<input name="_csrf" type="hidden" value="ea948ad2-787c-477e-bc4c-e90ac926c31c" />-->
+        <button class="btn btn-lg btn-info btn-block" type="submit">登录</button>
+    </form>
+</div>
+</body>
+</html>

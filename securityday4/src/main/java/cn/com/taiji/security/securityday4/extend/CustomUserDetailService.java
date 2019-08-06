@@ -1,8 +1,8 @@
-package cn.com.taiji.security.securityday3.extend;
+package cn.com.taiji.security.securityday4.extend;
 
-import cn.com.taiji.security.securityday3.service.UserDomainService;
-import cn.com.taiji.security.securityday3.domain.Role;
-import cn.com.taiji.security.securityday3.domain.UserInfo;
+import cn.com.taiji.security.securityday4.domain.Role;
+import cn.com.taiji.security.securityday4.domain.UserInfo;
+import cn.com.taiji.security.securityday4.service.UserDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,21 +20,12 @@ public class CustomUserDetailService implements UserDetailsService {
     @Autowired
     private UserDomainService userDomainService;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserInfo userDomain = userDomainService.findByUsername(username);
         if (userDomain == null) {
             throw new UsernameNotFoundException("没有此用户");
         }
-
-//        //定义权限列表
-//        //Authority: ROLE, SCOPE, GROUP ,.........
-//        List<GrantedAuthority> authorities = new ArrayList<>();
-//        //用户可以访问的资源名称（或者说用户所拥有的权限)注意：必须"ROLE_"开头
-//        authorities.add(new SimpleGrantedAuthority(userDomain.getRoles().name()));
 
         //定义权限列表.
         List<GrantedAuthority> authorities = new ArrayList<>();
