@@ -13,7 +13,7 @@
 <body>
 <div class="container">
     <div th:if="${param.error}">
-        用户名密码错误，要不去<a th:href="@{/}">首页</a>看看？
+        用户名密码或者验证码错误，要不去<a th:href="@{/}">首页</a>看看？
     </div>
     <div th:if="${param.logout}">
         您已经登出

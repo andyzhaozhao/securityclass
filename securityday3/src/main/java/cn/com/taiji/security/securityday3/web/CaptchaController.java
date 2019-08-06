@@ -1,6 +1,5 @@
 package cn.com.taiji.security.securityday3.web;
 
-import cn.com.taiji.security.securityday3.config.CustomCaptchaFilter;
 import cn.com.taiji.security.securityday3.config.WebSecurityConfig;
 import com.google.code.kaptcha.Producer;
 import org.slf4j.Logger;
@@ -18,7 +17,7 @@ import java.io.IOException;
 
 @Controller
 public class CaptchaController {
-    private Logger logger = LoggerFactory.getLogger(CustomCaptchaFilter.class);
+    private Logger logger = LoggerFactory.getLogger(CaptchaController.class);
 
     @Autowired
     private Producer captchaProducer;
