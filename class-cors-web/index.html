@@ -5,14 +5,41 @@
     <title>cors测试</title>
 </head>
 <body>
-<button id="button">测试get user</button>
+<button id="button">测试跨域get user</button>
+<button id="button2">测试跨域post user</button>
 </body>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
 </script>
 <script>
+    var url = "http://localhost:8080/user";
 
-    $("button").click(function () {
-        var url = "http://localhost:8080/user";
+    $("#button2").click(function () {
+        $.ajax({
+            url: url,
+            type: "POST",
+            // dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },
+            headers : {'AAAAAAA':'AAAAAAAhgjkgA'},
+            data:{
+                "userName": "zhaozhao",
+                "sex": "man",
+                "dept": "taiji"
+            },
+            crossDomain: true,
+            success: function (data) {
+                debugger;
+                alert(data)
+            },
+            error: function (err) {
+                debugger;
+                alert(err);
+            }
+        });
+    });
+
+    $("#button").click(function () {
         $.ajax({
             url: url,
             type: "GET",

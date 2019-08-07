@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Map;
+
 @RestController
 public class DemoController {
     private Logger logger = LoggerFactory.getLogger(DemoController.class);
@@ -28,14 +30,16 @@ public class DemoController {
         return "删除用户成功";
     }
 
-//    @CrossOrigin
+    //    @CrossOrigin
     @PutMapping("/user")
-    public String update() {
+    public String update(Map<String, String> user) {
+        logger.info("User={}", user);
         return "更新用户成功";
     }
 
     @PostMapping("/user")
-    public String add() {
+    public String add(@RequestParam  Map<String, String> user) {
+        logger.info("User={}", user);
         return "增加用户成功";
     }
 
@@ -43,9 +47,10 @@ public class DemoController {
     public String a() {
         return "return a";
     }
+
     @GetMapping("/b")
     public Object b() {
-        Object result = restTemplate.getForObject("https://www.baidu.com/",String.class);
+        Object result = restTemplate.getForObject("https://www.baidu.com/", String.class);
         return result;
     }
 }

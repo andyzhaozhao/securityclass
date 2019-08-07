@@ -30,6 +30,7 @@ public class CorsConfg {
         // 就必须在Access-Control-Expose-Headers里面指定。上面的例子指定，getResponseHeader(‘FooBar’)可以返回FooBar字段的值。
         //允许clienHeaderWriterFiltert-site取得自定义得header值
         corsConfiguration.addExposedHeader(HttpHeaders.AUTHORIZATION);
+        corsConfiguration.addExposedHeader("AAAAAAA");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);
