@@ -13,11 +13,26 @@
 
     $("button").click(function () {
         var url = "http://localhost:8080/user";
-        alert("要发起get请求了：")
-        $.get(url, function (data, status) {
-            debugger;
-            alert("Data: " + data + "nStatus: " + status);
+        $.ajax({
+            url: url,
+            type: "GET",
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+            success: function (data) {
+                debugger;
+                alert(data)
+            },
+            error: function (err) {
+                alert(err);
+            }
         });
+
+        // $.get(url, function (data, status) {
+        //     debugger;
+        //     alert("Data: " + data + "nStatus: " + status);
+        // });
     });
 </script>
 </html>

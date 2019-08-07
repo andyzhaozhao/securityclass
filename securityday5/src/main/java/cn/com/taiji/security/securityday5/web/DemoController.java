@@ -28,6 +28,7 @@ public class DemoController {
         return "删除用户成功";
     }
 
+//    @CrossOrigin
     @PutMapping("/user")
     public String update() {
         return "更新用户成功";
