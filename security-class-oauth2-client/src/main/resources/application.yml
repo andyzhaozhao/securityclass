@@ -1,0 +1,24 @@
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: 7c2cc6c0d0570f881eb8
+            client-secret: bb797b7c16d6f7e7b0eaa956093430110b4cf96c
+          tdf:
+            client-id: tdfOauth2SSO213
+            client-secret: 123456
+            provider: tdf
+            client-name: 太极统一认证
+            authorization-grant-type: authorization_code
+            redirect-uri-template: "{baseUrl}/login/oauth2/code/{registrationId}"
+        provider:
+           tdf:
+            authorization-uri: http://192.168.99.77:9998/oauth/authorize
+            token-uri: http://192.168.99.77:9998/oauth/token
+            user-info-uri: http://192.168.99.77:9998/me
+            user-name-attribute: "name"
+            jwk-set-uri: http://192.168.99.77:9998/.well-known/jwks.json

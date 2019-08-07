@@ -28,6 +28,7 @@
         <module>securityday3</module>
         <module>securityday4</module>
         <module>securityday5</module>
+        <module>security-class-oauth2-client</module>
     </modules>
 
     <dependencies>
