@@ -27,6 +27,7 @@
         <module>securityday2</module>
         <module>securityday3</module>
         <module>securityday4</module>
+        <module>securityday5</module>
     </modules>
 
     <dependencies>

@@ -1,8 +1,8 @@
-package cn.com.taiji.security.securityday4.config;
+package cn.com.taiji.security.securityday5.config;
 
-import cn.com.taiji.security.securityday4.extend.CustomAuthenticationProvider;
-import cn.com.taiji.security.securityday4.extend.CustomCaptchaWebAuthenticationDetailsSource;
-import cn.com.taiji.security.securityday4.extend.CustomUserDetailService;
+import cn.com.taiji.security.securityday5.extend.CustomAuthenticationProvider;
+import cn.com.taiji.security.securityday5.extend.CustomCaptchaWebAuthenticationDetailsSource;
+import cn.com.taiji.security.securityday5.extend.CustomUserDetailService;
 import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
